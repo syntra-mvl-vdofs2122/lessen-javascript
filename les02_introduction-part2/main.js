@@ -479,7 +479,80 @@ console.log(
  *      > player wins: alert 'You win, you guessed [x] times'
  *      > confirm 'Want to try again'
  */
-function guessingGame() {}
+function guessingGame() {
+    let tryAgain = true;
+
+    while (tryAgain) {
+        let guessCount = 0;
+        let question = NaN;
+        let randomNumber = Math.floor(Math.random() * 11);
+
+        while (randomNumber !== question) {
+            question = parseInt(prompt('Guess a number between 0 and 10.'));
+
+            while (!(question >= 0 && question <= 10)) {
+                question = parseInt(
+                    prompt('Invalid guess, guess a number between 0 and 10?'),
+                );
+            }
+
+            if (question < randomNumber) {
+                alert('Wrong, your guess is to low');
+            }
+
+            if (question > randomNumber) {
+                alert('Wrong, your guess is to high');
+            }
+
+            guessCount++;
+        }
+
+        tryAgain = confirm(`You won in ${guessCount} guesses, play again?`);
+    }
+}
+
+function promptGuess() {
+    let question = parseInt(prompt('Guess a number between 0 and 10.'));
+
+    while (!(question >= 0 && question <= 10)) {
+        question = parseInt(
+            prompt('Invalid guess, guess a number between 0 and 10?'),
+        );
+    }
+
+    return question;
+}
+
+function alertWrongNumber(question, randomNumber) {
+    if (question < randomNumber) {
+        alert('Wrong, your guess is to low');
+    }
+
+    if (question > randomNumber) {
+        alert('Wrong, your guess is to high');
+    }
+}
+
+function guessingGameTwo() {
+    let guessCount = 0;
+    let question = NaN;
+    let randomNumber = Math.floor(Math.random() * 11);
+
+    while (randomNumber !== question) {
+        question = promptGuess();
+
+        alertWrongNumber(question, randomNumber);
+        guessCount++;
+    }
+
+    let tryAgain = confirm(`You won in ${guessCount} guesses, play again?`);
+
+    if (tryAgain) {
+        guessingGameTwo();
+    }
+}
+
+guessingGameTwo();
 
 /**
  * Prompt for rock, paper of scissors
