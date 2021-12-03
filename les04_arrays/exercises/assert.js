@@ -369,7 +369,7 @@ async function assertResult(
             [3, 5, 7, 12, 3, 6, 9, 10, 10, 5],
             [12, 3, 9],
         ],
-        true,
+        false,
         'Missing value',
     );
     await assertResult(
@@ -379,7 +379,7 @@ async function assertResult(
             [3, 5, 7, 12, 3, 6, 9, 10, 10, 5],
             [12, 3, 7, 9],
         ],
-        true,
+        false,
         'Wrong value',
     );
 })();
