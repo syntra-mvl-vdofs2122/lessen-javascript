@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Guessing Game</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <h1>Guess a number between 0 and 10</h1>
+
+        <div id="input-container">
+            <input id="guess-input" type="number" />
+            <button id="guess-confirm">Guess</button>
+        </div>
+
+        <h2>Guesses (<span id="count-container">0</span>)</h2>
+
+        <div id="guess-container">
+            <p class="guess"><span>5</span> - <span>Too low</span></p>
+            <p class="guess"><span>5</span> - <span>Too low</span></p>
+            <p class="guess"><span>5</span> - <span>Too low</span></p>
+            <p class="guess"><span>5</span> - <span>Too low</span></p>
+        </div>
+
+        <p id="message-container">You won, play again?</p>
+
+        <button id="play-again-btn">Play again</button>
+
+        <script src="main.js"></script>
+    </body>
+</html>

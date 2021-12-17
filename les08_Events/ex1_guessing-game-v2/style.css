@@ -1,0 +1,12 @@
+body {
+    text-align: center;
+}
+
+#input-container {
+    display: flex;
+    justify-content: center;
+}
+
+.hide {
+    display: none;
+}
