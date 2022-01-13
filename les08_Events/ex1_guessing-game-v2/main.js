@@ -50,6 +50,7 @@ function guessBtnClicked() {
 
     count++;
     $countContainer.innerText = count;
+    $messageContainer.innerText = '';
 
     if (currentGuess > randomNumber) {
         let html = `<p class="guess"><span>${currentGuess}</span> - <span>Too high</span></p>`;
@@ -65,6 +66,12 @@ function guessBtnClicked() {
         let html = `<p class="guess"><span>${currentGuess}</span> - <span>Correct</span></p>`;
         $guessContainer.insertAdjacentHTML('beforeend', html);
         $messageContainer.innerText = 'You won, try again?';
+        $playAgainBtn.classList.remove('hide');
+        gameOver = true;
+    }
+
+    if (count === 5 && !gameOver) {
+        $messageContainer.innerText = `You lost, the correct number was ${randomNumber}, try again?`;
         $playAgainBtn.classList.remove('hide');
         gameOver = true;
     }
