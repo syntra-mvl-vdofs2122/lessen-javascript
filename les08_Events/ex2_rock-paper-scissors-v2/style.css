@@ -1,1 +1,52 @@
 /*Style*/
+.choice-btns-container {
+    display: flex;
+    justify-content: center;
+}
+
+.choice-container {
+    display: flex;
+    justify-content: center;
+    padding-top: 2rem;
+}
+
+.choice {
+    width: 100px;
+    height: 100px;
+    border: 5px solid white;
+    margin: 0 1rem;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.choice--rock {
+    background-image: url(img/rock.png);
+}
+
+.choice--paper {
+    background-image: url(img/paper.png);
+}
+
+.choice--scissors {
+    background-image: url(img/scissors.png);
+}
+
+#message-container {
+    text-align: center;
+    height: 5rem;
+    line-height: 5rem;
+    margin: 0;
+}
+
+.score-container {
+    display: flex;
+    justify-content: center;
+}
+
+.score {
+    font-size: 1.5rem;
+    padding: 1rem 1rem;
+    margin: 0 1rem;
+    border: 5px solid white;
+}

@@ -8,9 +8,31 @@
         />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>Rock Paper Scissors v2</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css"
+        />
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
+        <div class="choice-btns-container">
+            <button class="choice-btn" id="rock">Rock</button>
+            <button class="choice-btn" id="paper">Paper</button>
+            <button class="choice-btn" id="scissors">Scissors</button>
+        </div>
+
+        <div class="choice-container">
+            <div class="choice choice--paper" id="user-choice"></div>
+            <div class="choice choice--rock" id="ai-choice"></div>
+        </div>
+
+        <h2 id="message-container">Player won</h2>
+
+        <div class="score-container">
+            <div class="score">User: <span id="user-score">0</span></div>
+            <div class="score">AI: <span id="ai-score">0</span></div>
+        </div>
+
         <script src="main.js"></script>
     </body>
 </html>
