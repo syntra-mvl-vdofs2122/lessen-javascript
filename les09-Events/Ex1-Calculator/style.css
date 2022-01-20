@@ -1,0 +1,28 @@
+#screen {
+    background-color: #fff;
+    height: 4rem;
+    width: 19rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    text-align: right;
+    font-size: 2rem;
+    color: black;
+    font-family: monospace;
+    line-height: 2rem;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+#btn-container {
+    display: grid;
+    grid-template-columns: repeat(4, 4rem);
+    grid-gap: 1rem;
+}
+
+#btn-container button {
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    padding: 0;
+    text-align: center;
+}
