@@ -29,9 +29,20 @@
         <h2 id="message-container">Player won</h2>
 
         <div class="score-container">
-            <div class="score">User: <span id="user-score">0</span></div>
-            <div class="score">AI: <span id="ai-score">0</span></div>
+            <div class="score">
+                User: <span id="user-score">0</span>/<span
+                    class="best-of-container"
+                    >5</span
+                >
+            </div>
+            <div class="score">
+                AI: <span id="ai-score">0</span>/<span class="best-of-container"
+                    >5</span
+                >
+            </div>
         </div>
+
+        <button id="play-again-btn" class="hide">Start over</button>
 
         <script src="main.js"></script>
     </body>

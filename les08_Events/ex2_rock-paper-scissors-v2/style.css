@@ -1,4 +1,8 @@
 /*Style*/
+body {
+    text-align: center;
+}
+
 .choice-btns-container {
     display: flex;
     justify-content: center;
@@ -49,4 +53,12 @@
     padding: 1rem 1rem;
     margin: 0 1rem;
     border: 5px solid white;
+}
+
+#play-again-btn {
+    margin-top: 1rem;
+}
+
+.hide {
+    display: none;
 }
