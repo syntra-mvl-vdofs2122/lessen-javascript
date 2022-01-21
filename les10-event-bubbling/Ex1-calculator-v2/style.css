@@ -1,0 +1,23 @@
+.input-row {
+    display: flex;
+    justify-content: center;
+}
+
+.action-btns {
+    padding: 2rem;
+    text-align: center;
+}
+
+#result-container {
+    background-color: #fff;
+    height: 3rem;
+    border-radius: 5px;
+}
+
+.add-btn {
+    background-color: springgreen;
+}
+
+.delete-btn {
+    background-color: indianred;
+}
