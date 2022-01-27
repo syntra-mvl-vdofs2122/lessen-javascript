@@ -12,6 +12,10 @@
     background-color: #fff;
     height: 3rem;
     border-radius: 5px;
+    color: black;
+    line-height: 2rem;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
 }
 
 .add-btn {
