@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Hangman</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <section class="hero is-primary">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">Hangman</h1>
+                </div>
+            </div>
+        </section>
+        <section class="columns">
+            <aside class="column">
+                <div id="letter-container">
+                    <div class="letter">A</div>
+                    <div class="letter">B</div>
+                    <div class="letter">C</div>
+                    <div class="letter">D</div>
+                    <div class="letter">E</div>
+                    <div class="letter">F</div>
+                    <div class="letter">G</div>
+                    <div class="letter">H</div>
+                    <div class="letter">I</div>
+                    <div class="letter">J</div>
+                    <div class="letter">K</div>
+                    <div class="letter">L</div>
+                    <div class="letter">M</div>
+                    <div class="letter">N</div>
+                    <div class="letter">O</div>
+                    <div class="letter">P</div>
+                    <div class="letter">Q</div>
+                    <div class="letter">R</div>
+                    <div class="letter">S</div>
+                    <div class="letter">T</div>
+                    <div class="letter">U</div>
+                    <div class="letter">V</div>
+                    <div class="letter">W</div>
+                    <div class="letter">X</div>
+                    <div class="letter">Y</div>
+                    <div class="letter">Z</div>
+                </div>
+            </aside>
+            <main class="column is-three-quarters">
+                <section id="image-container">
+                    <img id="image" src="images/hangman01.png" alt="" />
+                </section>
+                <section id="solution-container">
+                    <div class="solution-letter"></div>
+                </section>
+                <section id="win-lose-container">You won!</section>
+            </main>
+        </section>
+        <script src="main.js"></script>
+    </body>
+</html>

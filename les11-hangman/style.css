@@ -1,0 +1,74 @@
+#letter-container{
+  padding: .5rem .8rem;
+  margin: 1rem;
+  border: solid black .5rem;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.letter{
+  margin: .3rem 0;
+  -webkit-border-radius: .2rem;
+  -moz-border-radius: .2rem;
+  border-radius: .5rem;
+  min-width: 2.5rem;
+  line-height: 2.5rem;
+  background-color: #00a5a5;
+  text-align: center;
+  cursor: pointer;
+}
+
+.letter:hover{
+  background-color: #8ecfcc;
+}
+
+.letter.failed{
+  cursor: not-allowed;
+  text-decoration: line-through;
+  background-color: #b43131;
+}
+
+.letter.success {
+  cursor: not-allowed;
+  background-color: #009500;
+}
+
+#letter-container::after {
+  content: "";
+
+  min-width: 2.5rem;
+}
+
+#image-container{
+  padding:  2rem;
+  text-align: center;
+}
+
+#solution-container {
+  display: flex;
+  justify-content: center;
+}
+
+.solution-letter{
+  margin: .2rem .4rem;
+  text-align: center;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-bottom: 2px solid black;
+}
+
+#win-lose-container{
+  -webkit-border-radius: .2rem;
+  -moz-border-radius: .2rem;
+  border-radius: .5rem;
+  min-width: 2.5rem;
+  line-height: 2.5rem;
+  background-color: #00a5a5;
+  text-align: center;
+  cursor: pointer;
+  text-align: center;
+  margin-top: 5rem;
+}
