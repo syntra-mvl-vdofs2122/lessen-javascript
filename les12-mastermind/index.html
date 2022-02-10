@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Mastermind</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"
+        />
+        <link
+            rel="stylesheet"
+            integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+        <section class="hero is-primary">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">Mastermind</h1>
+                </div>
+            </div>
+        </section>
+        <div class="container">
+            <section id="solution-container" class="hidden">
+                <div class="solution-option">1</div>
+                <div class="solution-option">2</div>
+                <div class="solution-option">3</div>
+                <div class="solution-option">4</div>
+                <div class="solution-option">5</div>
+            </section>
+
+            <section id="tries-container">
+                <div class="try">
+                    <div class="try-option-container">
+                        <div class="try-option">1</div>
+                        <div class="try-option">2</div>
+                        <div class="try-option">3</div>
+                        <div class="try-option">4</div>
+                        <div class="try-option">5</div>
+                    </div>
+                    <p>Juiste nummer: <span class="correct-color">3</span></p>
+                    <p>
+                        Waarvan op de juiste plaats:
+                        <span class="correct-place">1</span>
+                    </p>
+                </div>
+            </section>
+
+            <section id="try-input-section" class="">
+                <div id="try-input-container">
+                    <input
+                        class="try-input"
+                        type="number"
+                        min="0"
+                        max="4"
+                        step="1"
+                    />
+                    <input
+                        class="try-input"
+                        type="number"
+                        min="0"
+                        max="4"
+                        step="1"
+                    />
+                    <input
+                        class="try-input"
+                        type="number"
+                        min="0"
+                        max="4"
+                        step="1"
+                    />
+                    <input
+                        class="try-input"
+                        type="number"
+                        min="0"
+                        max="4"
+                        step="1"
+                    />
+                    <input
+                        class="try-input"
+                        type="number"
+                        min="0"
+                        max="4"
+                        step="1"
+                    />
+                </div>
+                <button
+                    id="try-submit-btn"
+                    class="button is-fullwidth is-primary"
+                >
+                    Try
+                </button>
+            </section>
+            <section id="winner-message-container" class="dont-show">
+                <button
+                    id="winner-submit-btn"
+                    class="button is-fullwidth is-primary"
+                >
+                    You won, try again?
+                </button>
+            </section>
+        </div>
+        <script src="main.js"></script>
+    </body>
+</html>
