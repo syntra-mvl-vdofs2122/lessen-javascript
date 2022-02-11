@@ -1,6 +1,6 @@
 let $solutionContainer = document.getElementById('solution-container');
 let $triesContainer = document.getElementById('tries-container');
-let $tryInputs = document.querySelectorAll('#try-input-container input');
+let $tryInputContainer = document.getElementById('try-input-container');
 let $trySubmitBtn = document.getElementById('try-submit-btn');
 let $winnerMessageContainer = document.getElementById(
     'winner-message-container',
@@ -9,8 +9,8 @@ let $winnerSubmitBtn = document.getElementById('winner-submit-btn');
 
 const MinNum = 0;
 const MaxNum = 4;
-const NumCount = 6;
-const MaxGuesses = 2;
+const NumCount = 7;
+const MaxGuesses = 10;
 
 let gameState = {
     solution: null,
@@ -44,8 +44,8 @@ function genSolution() {
 function getGuess() {
     let newGuess = [];
 
-    for (let i = 0; i < $tryInputs.length; i++) {
-        let val = parseInt($tryInputs[i].value);
+    for (let i = 0; i < $tryInputContainer.children.length; i++) {
+        let val = parseInt($tryInputContainer.children[i].value);
 
         if (!(val >= MinNum && val <= MaxNum)) {
             return false;
@@ -111,8 +111,8 @@ function writeCleanGame() {
     $winnerMessageContainer.classList.add('dont-show');
     $trySubmitBtn.disabled = false;
 
-    for (let i = 0; i < $tryInputs.length; i++) {
-        $tryInputs[i].value = '';
+    for (let i = 0; i < $tryInputContainer.children.length; i++) {
+        $tryInputContainer.children[i].value = '';
     }
 }
 
@@ -167,11 +167,37 @@ function writeGameOver() {
     }
 }
 
-function init() {
+function writeFirstLoad() {
+    $solutionContainer.innerHTML = '';
+    $tryInputContainer.innerHTML = '';
+
+    let solutionOptionHTML = '';
+    let tryInputContainerHTML = '';
+
+    for (let i = 0; i < NumCount; i++) {
+        solutionOptionHTML += `<div class="solution-option">1</div>`;
+        tryInputContainerHTML += `<input
+                        class="try-input"
+                        type="number"
+                        min="0"
+                        max="4"
+                        step="1"
+                    />`;
+    }
+
+    $solutionContainer.insertAdjacentHTML('beforeend', solutionOptionHTML);
+    $tryInputContainer.insertAdjacentHTML('beforeend', tryInputContainerHTML);
+}
+
+function init(firstLoad) {
     gameState.solution = genSolution();
     gameState.won = false;
     gameState.lost = false;
     gameState.guessCount = 0;
+
+    if (firstLoad === true) {
+        writeFirstLoad();
+    }
 
     writeCleanGame();
     writeSolution();
@@ -208,4 +234,4 @@ function trySubmitBtnClicked() {
 $trySubmitBtn.addEventListener('click', trySubmitBtnClicked);
 $winnerSubmitBtn.addEventListener('click', init);
 
-init();
+init(true);
