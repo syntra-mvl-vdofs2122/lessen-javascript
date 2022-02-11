@@ -139,3 +139,19 @@ function countOverSix(prevVal, element, index, array) {
 
 console.log(peopleArray.reduce(countOverSix, 0));
 console.log(peopleArray.myReduce(countOverSix, 0));
+
+// console.log(
+//     anArray.map(function (element, index, array) {
+//         console.log({ element, index, array });
+//     }),
+// );
+//
+// let testArrowFun = (element, index, array) => {
+//     console.log({ element, index, array });
+// };
+//
+// anArray.map((element, index, array) => {
+//     return element + index;
+// });
+//
+// anArray.map((element, index, array) => element + index)
