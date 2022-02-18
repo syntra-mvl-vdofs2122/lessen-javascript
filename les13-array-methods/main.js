@@ -155,3 +155,92 @@ console.log(peopleArray.myReduce(countOverSix, 0));
 // });
 //
 // anArray.map((element, index, array) => element + index)
+
+// let testArray = [3, 6, 2, 8, 12, 13]; // > 44
+
+// for (let i = 0; i < testArray.length; i++) {
+//     let double = testArray[i] * 2;
+//     console.log(double);
+// }
+//
+// function doubleNumbers(element, index, array) {
+//     let double = element * 2;
+//     console.log(double);
+// }
+//
+// let doubleNumbersTwo = (element, index, array) => {
+//     let double = element * 2;
+//     console.log(double);
+// };
+//
+// testArray.forEach(doubleNumbers);
+//
+// testArray.forEach(function (element, index, array) {
+//     let double = element * 2;
+//     console.log(double);
+// });
+//
+// testArray.forEach((element, index, array) => {
+//     let double = element * 2;
+//     console.log(double);
+// });
+
+// let doubleArray = [];
+//
+// for (let i = 0; i < testArray.length; i++) {
+//     let double = testArray[i] * 2;
+//     doubleArray.push(double);
+// }
+//
+// console.log(doubleArray);
+//
+// function doubleElement(element, index, array) {
+//     let double = element * 2;
+//
+//     return double;
+// }
+//
+// let doubleArrayMap = testArray.map(doubleElement);
+// console.log(doubleArrayMap);
+
+// let evenArray = [];
+//
+// for (let i = 0; i < testArray.length; i++) {
+//     let isEven = testArray[i] % 2 === 0;
+//
+//     if (isEven) {
+//         evenArray.push(testArray[i]);
+//     }
+// }
+//
+// console.log(evenArray);
+//
+// function onlyEven(element, index, array) {
+//     let isEven = element % 2 === 0;
+//
+//     return isEven;
+// }
+//
+// let evenArrayFilter = testArray.filter(onlyEven);
+//
+// console.log(evenArrayFilter);
+
+// let sum = 0;
+//
+// for (let i = 0; i < testArray.length; i++) {
+//     sum += testArray[i];
+// }
+//
+// console.log(sum);
+//
+// function sumElements(prevVal, element, index, array) {
+//     console.log({ prevVal, element, index });
+//
+//     prevVal += element;
+//
+//     return prevVal;
+// }
+//
+// let sumReduce = testArray.reduce(sumElements);
+//
+// console.log(sumReduce);
