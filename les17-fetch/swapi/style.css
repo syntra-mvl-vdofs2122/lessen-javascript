@@ -1,0 +1,50 @@
+.resource-details-extra-btn {
+    padding: 5px;
+    font-size: 12px;
+}
+
+.loading {
+    position: relative;
+    min-height: 3rem;
+}
+
+.loading:before {
+    content: '';
+    display: block;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(32, 43, 56, 0.51);
+}
+
+.loading:after {
+    box-sizing: border-box;
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: calc(50% - 1rem);
+    left: calc(50% - 1rem);
+    /*margin: -1rem -1rem 0 0;*/
+    /*transform: translate(-50%, -50%);*/
+    border-radius: 50%;
+    border-style: solid;
+    border-color: white transparent;
+    border-width: 4px;
+    animation: rotate linear 500ms infinite;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
