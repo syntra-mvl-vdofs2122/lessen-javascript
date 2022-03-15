@@ -1,0 +1,261 @@
+@import 'reset';
+@import 'mixins';
+@import 'variables';
+
+.header {
+    top: 0;
+    position: fixed;
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    background-color: $dark-bg;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__logo {
+        font-size: 1rem;
+        font-weight: 700;
+        color: white;
+    }
+
+    &__nav-link {
+        text-decoration: none;
+        color: rgb(105, 104, 104);
+        padding-right: 20px;
+    }
+}
+
+.main {
+    padding-top: 40px;
+}
+
+.hero {
+    background-image: url('../images/bg-image.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 10% 10%;
+    padding: $default-block-padding 0;
+
+    &__container {
+        @include container;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    &__title {
+        @include h2;
+        color: white;
+        margin-bottom: 1rem;
+    }
+    &__text {
+        font-size: 1rem;
+        line-height: 1.6rem;
+        color: rgba(255, 255, 255, 0.5);
+        max-width: $text-width;
+    }
+}
+
+.about {
+    padding: $default-block-padding 0;
+
+    &__container {
+        @include container;
+        text-align: center;
+    }
+
+    &__title {
+        @include h2;
+        margin-bottom: 1rem;
+    }
+
+    &__text {
+        @include text_base;
+        max-width: $text-width;
+        margin: 0 auto 4rem;
+    }
+
+    &__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: $default-grid-gap;
+
+        &-item {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+            padding: 5rem 3rem;
+            box-shadow: $default-box-shadow;
+
+            &__icon {
+                color: $red;
+            }
+
+            &__subtitle {
+                padding: 1rem 0;
+                @include h4;
+            }
+
+            &__text {
+            }
+        }
+    }
+}
+
+.curabitur {
+    background-color: $red;
+    padding: $default-block-padding 0;
+
+    &__container {
+        @include container;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    &__title {
+        @include h2;
+        margin-bottom: 1rem;
+    }
+
+    &__text {
+        font-size: 0.8rem;
+        line-height: 1.5;
+        text-align: center;
+    }
+}
+
+.review {
+    padding: $default-block-padding 0;
+
+    &__container {
+        @include container;
+    }
+
+    &__desc {
+        text-align: center;
+
+        &-title {
+            @include h3;
+            margin-bottom: 1rem;
+            color: #494949;
+        }
+
+        &-text {
+            max-width: $text-width;
+            margin: 0 auto;
+            @include text_base;
+        }
+    }
+
+    &__people {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: $default-grid-gap;
+        margin-top: 4rem;
+
+        &__card {
+            display: flex;
+            flex-direction: column;
+            box-shadow: $default-box-shadow;
+            padding: 3rem;
+
+            & .card {
+                &__text {
+                    font-style: italic;
+                    border-left: solid 7px lightgrey;
+                    padding: 2rem 0 2rem 2rem;
+                }
+
+                &__container {
+                    margin-top: 3rem;
+                    display: flex;
+                    align-items: center;
+                }
+
+                &__img {
+                    border-radius: 50%;
+                    display: block;
+                    width: 3rem;
+                    height: 3rem;
+                    overflow: hidden;
+
+                    img {
+                        display: block;
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+
+                &__name {
+                    color: grey;
+                    font-size: 0.8rem;
+                    margin-left: 1rem;
+
+                    &-name {
+                        color: $red;
+                        font-weight: 700;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.footer {
+    background-color: $dark-bg;
+    padding: $default-block-padding 0;
+
+    &__container {
+        @include container;
+        display: grid;
+        gap: 3rem;
+        grid-template-columns: 2fr 1fr 1fr;
+        grid-template-rows: auto auto;
+        color: grey;
+    }
+
+    & .footer-block {
+        &__title {
+            color: white;
+            @include h4;
+            margin-bottom: 2rem;
+        }
+
+        &__content {
+            font-size: 1rem;
+            line-height: 1.6rem;
+        }
+
+        &__content-item {
+            padding: 1rem 0;
+
+            &:first-child {
+                padding-top: 0;
+            }
+
+            &--border {
+                border-bottom: 1px solid grey;
+
+                &:last-child {
+                    border-bottom: none;
+                }
+            }
+        }
+    }
+
+    &__copyright {
+        border-top: 1px solid grey;
+        padding-top: 3rem;
+        grid-column: span 3;
+        text-align: center;
+    }
+}

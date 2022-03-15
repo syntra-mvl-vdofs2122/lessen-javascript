@@ -4,6 +4,25 @@ html {
     color: rgb(73, 73, 73);
 }
 
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+}
+
 h2 {
     font-size: 2.2rem;
     font-weight: 300;
@@ -28,4 +47,144 @@ h4 {
 p {
     font-size: 1rem;
     line-height: 1.6rem;
+}
+
+header {
+    height: 3rem;
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.logo {
+    font-weight: 600;
+}
+
+nav {
+    color: rgb(219, 219, 219);
+}
+
+.banner {
+    height: 35rem;
+    background-image: url(images/bg-image.png);
+    background-size: cover;
+    display: flex;
+    color: white;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner h1 {
+    font-size: 4rem;
+    font-weight: 300;
+    line-height: 7rem;
+}
+
+.banner p {
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.icons {
+    padding: 5rem;
+}
+
+.intro {
+    margin: 3rem auto;
+    width: 75%;
+    text-align: center;
+}
+
+.grid {
+    margin: 3rem auto;
+    width: 75%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.grid-item {
+    padding: 3rem 0;
+    flex: 0 1 27%;
+}
+
+.icon-item {
+    text-align: center;
+}
+
+.red {
+    color: rgb(204, 41, 41);
+}
+
+.red-section {
+    background-color: rgb(204, 41, 41);
+    color: white;
+    padding: 5rem;
+}
+
+.testimonials {
+    padding: 5rem;
+}
+
+.testimonial blockquote {
+    padding: 0.5rem 0 0.5rem 2rem;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    font-style: italic;
+    margin: 1.5rem 0;
+    border-left: 0.5rem solid darkgrey;
+}
+
+.writer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.writer p {
+    font-size: 0.8rem;
+}
+
+.writer p span {
+    font-weight: 600;
+}
+
+.round-image {
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 50%;
+    background-image: url(images/pic01.jpg);
+    background-size: cover;
+}
+
+footer {
+    padding: 5rem;
+    background-color: black;
+    color: white;
+}
+
+.content {
+    width: 75%;
+    margin: 0 auto;
+    display: flex;
+}
+
+.content section {
+    flex: 1 1 25%;
+    padding-right: 3rem;
+}
+
+.content section:first-child {
+    flex: 2 1 50%;
+}
+
+.copyright {
+    width: 75%;
+    margin: 0 auto;
 }

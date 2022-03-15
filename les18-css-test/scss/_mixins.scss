@@ -1,0 +1,45 @@
+@mixin container {
+    padding: 0 2rem;
+    max-width: $container-width;
+    margin: 0 auto;
+}
+
+@mixin text_base {
+    font-size: 1rem;
+    line-height: 1.6rem;
+    color: grey;
+}
+
+@mixin h1 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.5;
+    color: white;
+    cursor: pointer;
+    margin-right: auto;
+    padding: 20px 10px 20px 10px;
+}
+
+@mixin h2 {
+    font-size: 2.2rem;
+    line-height: 1.5;
+    font-weight: 300;
+    margin: 0;
+    text-transform: uppercase;
+}
+@mixin h3 {
+    font-size: 1.3rem;
+    line-height: 1.5;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+@mixin h4 {
+    font-size: 1rem;
+    line-height: 1.5;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+@mixin review__text {
+    color: grey;
+}

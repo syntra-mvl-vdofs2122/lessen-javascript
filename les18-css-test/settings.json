@@ -1,0 +1,82 @@
+{
+  "editor.tabSize": 2,
+
+  "liveSassCompile.settings.formats": [
+    {
+      "extensionName": ".css",
+      "format": "expanded",
+      "savePath": "~/../css/"
+    }
+  ],
+  "git.fetchOnPull": true,
+  "git-graph.dialog.fetchIntoLocalBranch.forceFetch": true,
+  "git-graph.dialog.fetchRemote.prune": true,
+  "git-graph.dialog.fetchRemote.pruneTags": true,
+  "git-graph.repository.commits.fetchAvatars": true,
+  "git-graph.repository.fetchAndPrune": true,
+  "git-graph.repository.fetchAndPruneTags": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "better-comments.tags": [
+    {
+      "backgroundColor": "transparent",
+      "bold": true,
+      "color": "#E06C75",
+      "italic": false,
+      "strikethrough": false,
+      "tag": "!",
+      "underline": false
+    },
+    {
+      "backgroundColor": "transparent",
+      "bold": true,
+      "color": "#ffffff",
+      "italic": false,
+      "strikethrough": false,
+      "tag": "+",
+      "underline": true
+    },
+    {
+      "backgroundColor": "transparent",
+      "bold": true,
+      "color": "#d9d9d9",
+      "italic": false,
+      "strikethrough": false,
+      "tag": "*",
+      "underline": true
+    },
+    {
+      "backgroundColor": "transparent",
+      "bold": true,
+      "color": "#a8b3bd",
+      "italic": false,
+      "strikethrough": false,
+      "tag": "-",
+      "underline": true
+    },
+    {
+      "backgroundColor": "transparent",
+      "bold": true,
+      "color": "#708090",
+      "italic": false,
+      "strikethrough": false,
+      "tag": "#",
+      "underline": false
+    },
+    {
+      "backgroundColor": "transparent",
+      "bold": false,
+      "color": "#5a738c",
+      "italic": false,
+      "strikethrough": false,
+      "tag": "%",
+      "underline": false
+    }
+  ],
+  "liveSassCompile.settings.showOutputWindowOn": "Debug",
+  "files.autoSave": "onFocusChange",
+  "files.autoSaveDelay": 500,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue"
+}
