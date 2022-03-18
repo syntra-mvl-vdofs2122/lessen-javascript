@@ -4,6 +4,13 @@ let $resourceDetailsContainer = document.getElementById(
     'resource-details-container',
 );
 
+let state = {
+    resource: null,
+};
+///////////////////
+// Draw function //
+///////////////////
+
 function drawResourceList(resourceList) {
     let resources = Object.keys(resourceList);
 
@@ -22,6 +29,23 @@ function drawResourceItem(name, results) {
 
     $resourceItemContainer.innerHTML =
         `<h2>${name}</h2>` + resourceItemHTML.join('');
+}
+
+function drawPagination(next, previous) {
+    console.log({ next, previous });
+    let paginationHTML = '<div class="pagination">';
+
+    if (previous) {
+        paginationHTML += `<button data-url='${previous}' class='pagination-btn'>Previous</button>`;
+    }
+
+    if (next) {
+        paginationHTML += `<button data-url='${next}' class='pagination-btn'>Next</button>`;
+    }
+
+    paginationHTML += '</div>';
+
+    $resourceItemContainer.insertAdjacentHTML('beforeend', paginationHTML);
 }
 
 function drawResourceDetails(name, details) {
@@ -55,11 +79,84 @@ function drawResourceDetails(name, details) {
         );
     });
 
-    console.log(detailHTML);
     return Promise.all(detailHTML).then((results) => {
         $resourceDetailsContainer.innerHTML =
             `<h2>${name}</h2>` + results.join('');
     });
+}
+
+function emptyResourceDetails() {
+    $resourceDetailsContainer.innerHTML = '';
+}
+
+////////////////////
+// Fetch Function //
+////////////////////
+
+function fetchResourceList() {
+    $resourceListContainer.classList.add('loading');
+
+    fetch('https://swapi.dev/api/')
+        .then(function (response) {
+            if (!response.ok) {
+                throw new Error('fetchResourceList failed');
+            }
+
+            return response.json();
+        })
+        .then(function (body) {
+            drawResourceList(body);
+        })
+        .catch(function (error) {
+            console.error(error);
+        })
+        .finally(() => {
+            $resourceListContainer.classList.remove('loading');
+        });
+}
+
+function fetchResourceItem(name, url) {
+    $resourceItemContainer.classList.add('loading');
+    fetch(url)
+        .then(function (response) {
+            if (!response.ok) {
+                throw new Error(`fetchResourceItem(${name}, ${url}) failed`);
+            }
+
+            return response.json();
+        })
+        .then(function (body) {
+            drawResourceItem(name, body.results);
+            drawPagination(body.next, body.previous);
+        })
+        .catch(function (error) {
+            console.error(error);
+        })
+        .finally(() => {
+            $resourceItemContainer.classList.remove('loading');
+        });
+}
+
+function fetchResourceDetails(name, url) {
+    $resourceDetailsContainer.classList.add('loading');
+
+    fetch(url)
+        .then(function (response) {
+            if (!response.ok) {
+                throw new Error(`fetchResourceItem(${name}, ${url}) failed`);
+            }
+
+            return response.json();
+        })
+        .then(function (body) {
+            return drawResourceDetails(name, body);
+        })
+        .catch(function (error) {
+            console.error(error);
+        })
+        .finally(() => {
+            $resourceDetailsContainer.classList.remove('loading');
+        });
 }
 
 function fetchExtraDetails(key, urls) {
@@ -92,79 +189,21 @@ function fetchExtraDetails(key, urls) {
     });
 }
 
-function fetchResourceList() {
-    $resourceListContainer.classList.add('loading');
-
-    fetch('https://swapi.dev/api/')
-        .then(function (response) {
-            if (!response.ok) {
-                throw new Error('fetchResourceList failed');
-            }
-
-            return response.json();
-        })
-        .then(function (body) {
-            console.log(body);
-
-            drawResourceList(body);
-        })
-        .catch(function (error) {
-            console.error(error);
-        })
-        .finally(() => {
-            $resourceListContainer.classList.remove('loading');
-        });
-}
-
-function fetchResourceItem(name, url) {
-    $resourceItemContainer.classList.add('loading');
-    fetch(url)
-        .then(function (response) {
-            if (!response.ok) {
-                throw new Error(`fetchResourceItem(${name}, ${url}) failed`);
-            }
-
-            return response.json();
-        })
-        .then(function (body) {
-            drawResourceItem(name, body.results);
-        })
-        .catch(function (error) {
-            console.error(error);
-        })
-        .finally(() => {
-            $resourceItemContainer.classList.remove('loading');
-        });
-}
-
-function fetchResourceDetails(name, url) {
-    $resourceDetailsContainer.classList.add('loading');
-
-    fetch(url)
-        .then(function (response) {
-            if (!response.ok) {
-                throw new Error(`fetchResourceItem(${name}, ${url}) failed`);
-            }
-
-            return response.json();
-        })
-        .then(function (body) {
-            return drawResourceDetails(name, body);
-        })
-        .catch(function (error) {
-            console.error(error);
-        })
-        .finally(() => {
-            $resourceDetailsContainer.classList.remove('loading');
-        });
-}
+////////////////////
+// Event handlers //
+////////////////////
 
 function resourceListClicked(event) {
     if (event.target.matches('.resource-btn')) {
         let name = event.target.innerText;
         let url = event.target.dataset.url;
 
-        fetchResourceItem(name, url);
+        if (name !== state.resource) {
+            state.resource = name;
+            emptyResourceDetails();
+
+            fetchResourceItem(name, url);
+        }
     }
 }
 
@@ -175,12 +214,28 @@ function resourceItemClicked(event) {
 
         fetchResourceDetails(name, url);
     }
+    if (event.target.matches('.pagination-btn')) {
+        let name = event.target.innerText;
+        let url = event.target.dataset.url;
+
+        fetchResourceItem(name, url);
+    }
 }
 
 function resourceDetailsClicked(event) {
     if (event.target.matches('.resource-details-extra-btn')) {
         let name = event.target.innerText;
         let url = event.target.dataset.url;
+
+        let splitUrl = url.split('/');
+        let resourceName = splitUrl[splitUrl.length - 3];
+
+        if (resourceName !== state.resource) {
+            let resourceUrl = splitUrl.slice(0, -2).join('/');
+
+            state.resource = resourceName;
+            fetchResourceItem(resourceName, resourceUrl);
+        }
 
         fetchResourceDetails(name, url);
     }

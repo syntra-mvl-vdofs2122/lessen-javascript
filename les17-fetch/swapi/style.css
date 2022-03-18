@@ -48,3 +48,11 @@
         transform: rotate(360deg);
     }
 }
+
+.pagination {
+    padding-top: 2rem;
+}
+
+.pagination button {
+    background-color: black;
+}
