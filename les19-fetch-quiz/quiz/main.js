@@ -138,8 +138,6 @@ function initCat() {
 
 function initQuiz() {
     drawPage();
-
-
 }
 
 function answer(curAnswer) {}
