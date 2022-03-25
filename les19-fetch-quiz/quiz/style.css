@@ -9,10 +9,6 @@ html {
   font-family: sans-serif;
 }
 
-.hidden {
-  display: none !important;
-}
-
 .cat-select__container {
   display: flex;
   flex-direction: column;
@@ -265,6 +261,10 @@ html {
   .quiz__answer {
     font-size: 1rem;
   }
+}
+
+.hidden {
+  display: none !important;
 }
 
 /*# sourceMappingURL=style.css.map */

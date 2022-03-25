@@ -11,12 +11,6 @@ html {
     font-family: sans-serif;
 }
 
-// Utils
-
-.hidden {
-    display: none !important;
-}
-
 // Category select
 
 .cat-select {
@@ -305,4 +299,10 @@ html {
             font-size: 1rem;
         }
     }
+}
+
+// Utils
+
+.hidden {
+    display: none !important;
 }

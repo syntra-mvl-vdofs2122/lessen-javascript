@@ -30,7 +30,13 @@ function resetQuestionNumberClasses() {}
 
 function drawQuestionNumberClass(index, type) {}
 
-function drawPage() {}
+function drawPage() {
+    $quizContainer.classList.toggle('hidden', state.selectedCatId === null);
+    $catSelectContainer.classList.toggle(
+        'hidden',
+        state.selectedCatId !== null,
+    );
+}
 
 function disableCatForm() {
     $catSelectSelect.disabled = true;
@@ -111,12 +117,13 @@ function initCat() {
     state.selectedCatId = null;
     state.selectedCatText = null;
 
+    drawPage();
+
     if (!state.catFetchComplete) {
         disableCatForm();
 
         fetchCategories()
             .then((categories) => {
-                console.log(categories);
                 drawOptions(categories);
                 state.catFetchComplete = true;
             })
@@ -129,7 +136,11 @@ function initCat() {
     }
 }
 
-function initQuiz() {}
+function initQuiz() {
+    drawPage();
+
+
+}
 
 function answer(curAnswer) {}
 
@@ -142,8 +153,11 @@ function submitCatSelect(event) {
     let activeOption = event.target.querySelector(
         '.cat-select__select option:checked',
     );
-    console.log(activeOption.value);
-    console.log(activeOption.innerText);
+
+    state.selectedCatId = activeOption.value;
+    state.selectedCatText = activeOption.innerText;
+
+    initQuiz();
 }
 
 function answerBtnClicked(event) {}
