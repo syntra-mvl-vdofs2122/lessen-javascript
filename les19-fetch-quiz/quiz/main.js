@@ -8,8 +8,9 @@ let $quizAnswerContainer = document.getElementById('quiz-answer-container');
 let $quizQuestionNumbers = document.querySelectorAll('.quiz__question-number');
 let $quizScore = document.getElementById('quiz-score');
 let $quizQuestion = document.getElementById('quiz-question');
+let $quizAside = document.getElementById('quiz-aside');
 
-const QuestionCount = 10;
+const QuestionCount = 15;
 
 let state = {
     error: false,
@@ -26,9 +27,28 @@ let state = {
 // Draw Function //
 ///////////////////
 
-function resetQuestionNumberClasses() {}
+function drawLoadingQuestions() {
+    $quizQuestion.innerHTML = 'Loading questions...';
+    $quizAnswerContainer.childNodes.forEach((element) => {
+        element.disabled = true;
+    });
+}
 
-function drawQuestionNumberClass(index, type) {}
+function drawLoadingQuestionsReady() {
+    $quizAnswerContainer.childNodes.forEach((element) => {
+        element.disabled = false;
+    });
+}
+
+function drawQuestionAsideClasses(index, type) {
+    $quizAside.childNodes[index].classList.add(
+        'quiz__question-number--' + type,
+    );
+}
+
+function drawQuestionCountClass() {
+    $quizContainer.classList.add('quiz__container--' + QuestionCount);
+}
 
 function drawPage() {
     $quizContainer.classList.toggle('hidden', state.selectedCatId === null);
@@ -57,19 +77,47 @@ function drawOptions(categories) {
     $catSelectSelect.innerHTML = optionsHTML.join('');
 }
 
-function drawScore() {}
+function drawScore() {
+    $quizScore.innerText = state.score;
+}
 
-function drawQuestion() {}
+function drawQuestion() {
+    if (state.gameOver) {
+        $quizQuestion.innerHTML = `Game over, you scored ${state.score}/${QuestionCount} points, play again?`;
+        return;
+    }
 
-function drawEndQuestion() {}
+    let curQuestion = state.questions[state.turn];
+    $quizQuestion.innerHTML = curQuestion.question;
+}
 
-function drawErrorQuestion() {}
+function drawAside() {
+    let asideHTML = '';
+
+    for (let i = 1; i <= QuestionCount; i++) {
+        asideHTML += `<div class="quiz__question-number ${
+            i === state.turn + 1 ? 'quiz__question-number--active' : ''
+        }">${i}</div>`;
+    }
+
+    asideHTML += `<div class="quiz__score"><span id="quiz-score">${state.turn}</span>/${QuestionCount}</div>`;
+
+    $quizAside.innerHTML = asideHTML;
+
+    $quizScore = document.getElementById('quiz-score');
+}
+
+function drawErrorQuestion() {
+    $quizQuestion.innerHTML =
+        'Could not find enough questions for this category, pick another category?';
+}
 
 /////////////////////
 // Fetch Functions //
 /////////////////////
 
 function fetchQuestions() {
+    // returns Promise with body
     let queryParams = new URLSearchParams();
     queryParams.append('amount', QuestionCount);
     queryParams.append('category', state.selectedCatId);
@@ -138,9 +186,64 @@ function initCat() {
 
 function initQuiz() {
     drawPage();
+    state.error = false;
+    state.gameOver = false;
+    state.score = 0;
+    state.turn = 0;
+
+    drawLoadingQuestions();
+    drawAside();
+    drawQuestionCountClass();
+
+    fetchQuestions()
+        .then((body) => {
+            if (body.response_code === 1) {
+                drawErrorQuestion();
+                state.error = true;
+                return;
+            }
+
+            state.questions = body.results;
+            drawQuestion();
+        })
+        .finally(() => {
+            drawLoadingQuestionsReady();
+        });
 }
 
-function answer(curAnswer) {}
+function answer(curAnswer) {
+    if (state.error) {
+        if (curAnswer === 'True') {
+            initCat();
+        }
+
+        return;
+    }
+
+    if (state.gameOver) {
+        if (curAnswer === 'True') {
+            initQuiz();
+        } else {
+            initCat();
+        }
+        return;
+    }
+
+    let correctAnswer = state.questions[state.turn].correct_answer;
+
+    if (curAnswer === correctAnswer) {
+        state.score++;
+        drawQuestionAsideClasses(state.turn, 'correct');
+    } else {
+        drawQuestionAsideClasses(state.turn, 'wrong');
+    }
+
+    state.turn++;
+    state.gameOver = state.turn === state.questions.length;
+    drawQuestion();
+    drawScore();
+    drawQuestionAsideClasses(state.turn, 'active');
+}
 
 ////////////////////
 // Event Handlers //
@@ -158,7 +261,13 @@ function submitCatSelect(event) {
     initQuiz();
 }
 
-function answerBtnClicked(event) {}
+function answerBtnClicked(event) {
+    if (event.target.matches('.quiz__answer')) {
+        let curAnswer = event.target.innerText;
+
+        answer(curAnswer);
+    }
+}
 
 /////////
 // RUN //
