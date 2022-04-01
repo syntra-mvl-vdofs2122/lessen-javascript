@@ -1,0 +1,44 @@
+.todo-item,
+.done-item {
+    padding: 10px 55px 10px 10px;
+    border: 1px solid antiquewhite;
+    position: relative;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.todo-text,
+.done-text {
+    margin: 0;
+}
+
+.todo-check-btn,
+.done-remove-btn {
+    padding: 0;
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: forestgreen;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.done-remove-btn {
+    background-color: red;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#todo-count,
+#done-count {
+    font-size: 14px;
+}

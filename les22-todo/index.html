@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Todo</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"
+        />
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://unpkg.com/feather-icons"></script>
+    </head>
+    <body>
+        <form name="todo" id="todo-form">
+            <textarea name="todo-input" id="todo-input"></textarea>
+            <button type="submit">Save Todo</button>
+        </form>
+
+        <h2 class="title">
+            <span>Todo items:</span> <span id="todo-count">(3)</span>
+        </h2>
+        <section id="todo-list">
+            <div class="todo-item">
+                <p class="todo-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Est facere hic iure minus non omnis perferendis repellendus
+                    temporibus. A, accusantium, beatae delectus eveniet facere,
+                    fugit harum id inventore iusto labore laboriosam nemo nihil
+                    nisi nulla numquam odit perferendis quam quas recusandae
+                    ullam? Eaque, placeat.
+                </p>
+                <button class="todo-check-btn">
+                    <i data-feather="check"></i>
+                </button>
+            </div>
+            <div class="todo-item">
+                <p class="todo-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Est facere hic iure minus non.
+                </p>
+                <button class="todo-check-btn">
+                    <i data-feather="check"></i>
+                </button>
+            </div>
+            <div class="todo-item">
+                <p class="todo-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                </p>
+                <button class="todo-check-btn">
+                    <i data-feather="check"></i>
+                </button>
+            </div>
+        </section>
+
+        <h2 class="title">
+            <span>Done items:</span> <span id="done-count">(3)</span>
+        </h2>
+        <section id="done-list">
+            <div class="done-item">
+                <p class="done-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Est facere hic iure minus non omnis perferendis repellendus
+                    temporibus. A, accusantium, beatae delectus eveniet facere,
+                    fugit harum id inventore iusto labore laboriosam nemo nihil
+                    nisi nulla numquam odit perferendis quam quas recusandae
+                    ullam? Eaque, placeat.
+                </p>
+                <button class="done-remove-btn">
+                    <i data-feather="trash-2"></i>
+                </button>
+            </div>
+            <div class="done-item">
+                <p class="done-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Est facere hic iure minus non.
+                </p>
+                <button class="done-remove-btn">
+                    <i data-feather="trash-2"></i>
+                </button>
+            </div>
+            <div class="done-item">
+                <p class="done-text">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                </p>
+                <button class="done-remove-btn">
+                    <i data-feather="trash-2"></i>
+                </button>
+            </div>
+        </section>
+
+        <script src="main.js"></script>
+    </body>
+</html>
