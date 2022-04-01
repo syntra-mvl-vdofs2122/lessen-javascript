@@ -2,10 +2,11 @@ let $catSelectContainer = document.getElementById('cat-select-container');
 let $catSelectForm = document.getElementById('cat-select-form');
 let $catSelectSelect = document.getElementById('cat-select-select');
 let $catSelectSubmit = document.getElementById('cat-select-submit');
+let $catSelectCount = document.getElementById('cat-select-count');
+let $catSelectDifficulty = document.getElementById('cat-select-difficulty');
 let $quizContainer = document.getElementById('quiz-container');
 let $quizTitle = document.getElementById('quiz-title');
 let $quizAnswerContainer = document.getElementById('quiz-answer-container');
-let $quizQuestionNumbers = document.querySelectorAll('.quiz__question-number');
 let $quizScore = document.getElementById('quiz-score');
 let $quizQuestion = document.getElementById('quiz-question');
 let $quizAside = document.getElementById('quiz-aside');
@@ -19,7 +20,10 @@ let state = {
     selectedCatId: null,
     selectedCatText: null,
     score: 0,
+    token: null,
     turn: 0,
+    questionCount: null,
+    difficulty: null,
     questions: null,
 };
 
@@ -47,7 +51,7 @@ function drawQuestionAsideClasses(index, type) {
 }
 
 function drawQuestionCountClass() {
-    $quizContainer.classList.add('quiz__container--' + QuestionCount);
+    $quizContainer.classList.add('quiz__container--' + state.questionCount);
 }
 
 function drawPage() {
@@ -83,7 +87,7 @@ function drawScore() {
 
 function drawQuestion() {
     if (state.gameOver) {
-        $quizQuestion.innerHTML = `Game over, you scored ${state.score}/${QuestionCount} points, play again?`;
+        $quizQuestion.innerHTML = `Game over, you scored ${state.score}/${state.questionCount} points, play again?`;
         return;
     }
 
@@ -94,13 +98,13 @@ function drawQuestion() {
 function drawAside() {
     let asideHTML = '';
 
-    for (let i = 1; i <= QuestionCount; i++) {
+    for (let i = 1; i <= state.questionCount; i++) {
         asideHTML += `<div class="quiz__question-number ${
             i === state.turn + 1 ? 'quiz__question-number--active' : ''
         }">${i}</div>`;
     }
 
-    asideHTML += `<div class="quiz__score"><span id="quiz-score">${state.turn}</span>/${QuestionCount}</div>`;
+    asideHTML += `<div class="quiz__score"><span id="quiz-score">${state.turn}</span>/${state.questionCount}</div>`;
 
     $quizAside.innerHTML = asideHTML;
 
@@ -112,16 +116,38 @@ function drawErrorQuestion() {
         'Could not find enough questions for this category, pick another category?';
 }
 
+function drawTitle() {
+    $quizTitle.innerText = `${state.selectedCatText} Quiz`;
+}
+
 /////////////////////
 // Fetch Functions //
 /////////////////////
 
+function fetchToken() {
+    return fetch('https://opentdb.com/api_token.php?command=request')
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Could not fetch questions');
+            }
+
+            return response.json();
+        })
+        .then((body) => {
+            return body;
+        })
+        .catch((err) => {
+            console.error(err);
+        });
+}
+
 function fetchQuestions() {
     // returns Promise with body
     let queryParams = new URLSearchParams();
-    queryParams.append('amount', QuestionCount);
+    queryParams.append('amount', state.questionCount);
     queryParams.append('category', state.selectedCatId);
-    queryParams.append('difficulty', 'medium');
+    queryParams.append('difficulty', state.difficulty);
+    queryParams.append('token', state.token);
     queryParams.append('type', 'boolean');
 
     return fetch('https://opentdb.com/api.php?' + queryParams.toString())
@@ -164,16 +190,34 @@ function fetchCategories() {
 function initCat() {
     state.selectedCatId = null;
     state.selectedCatText = null;
+    state.difficulty = null;
+    state.questionCount = null;
 
     drawPage();
+    disableCatForm();
 
     if (!state.catFetchComplete) {
-        disableCatForm();
+        let promises = [fetchCategories(), fetchToken()];
 
-        fetchCategories()
-            .then((categories) => {
+        Promise.all(promises)
+            .then((bodies) => {
+                let categories = bodies[0];
+                let token = bodies[1].token;
+
                 drawOptions(categories);
+                state.token = token;
                 state.catFetchComplete = true;
+            })
+            .catch((error) => {
+                console.error(error);
+            })
+            .finally(() => {
+                enableCatForm();
+            });
+    } else {
+        fetchToken()
+            .then((tokenBody) => {
+                state.token = tokenBody.token;
             })
             .catch((error) => {
                 console.error(error);
@@ -191,13 +235,14 @@ function initQuiz() {
     state.score = 0;
     state.turn = 0;
 
+    drawTitle();
     drawLoadingQuestions();
     drawAside();
     drawQuestionCountClass();
 
     fetchQuestions()
         .then((body) => {
-            if (body.response_code === 1) {
+            if (body.response_code !== 0) {
                 drawErrorQuestion();
                 state.error = true;
                 return;
@@ -252,11 +297,14 @@ function answer(curAnswer) {
 function submitCatSelect(event) {
     event.preventDefault();
     let activeOption = event.target.querySelector(
-        '.cat-select__select option:checked',
+        '#cat-select-select option:checked',
     );
 
     state.selectedCatId = activeOption.value;
     state.selectedCatText = activeOption.innerText;
+
+    state.difficulty = $catSelectDifficulty.value;
+    state.questionCount = $catSelectCount.value;
 
     initQuiz();
 }
