@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Currency Exchange</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <h1>Currency Exchange:</h1>
+        <form id="exchange-form">
+            <p id="error"></p>
+
+            <div>
+                <label for="amount">
+                    Amount:
+                    <input
+                        type="number"
+                        step="0.01"
+                        name="amount"
+                        id="amount"
+                    />
+                </label>
+            </div>
+            <div>
+                <label for="currency">
+                    Currency:
+                    <select name="currency" id="currency"></select>
+                </label>
+            </div>
+            <div>
+                <label for="date">
+                    Date:
+                    <input type="date" name="date" id="date" />
+                </label>
+            </div>
+
+            <button id="submit-btn" type="submit">Calculate</button>
+        </form>
+
+        <div id="result"></div>
+
+        <script src="main.js"></script>
+    </body>
+</html>
