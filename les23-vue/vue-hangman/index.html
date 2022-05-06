@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Hangman</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div id="app">
+            <section class="hero is-primary">
+                <div class="hero-body">
+                    <div class="container">
+                        <h1 class="title">Hangman</h1>
+                    </div>
+                </div>
+            </section>
+            <section class="columns">
+                <aside class="column">
+                    <div id="letter-container">
+                        <div
+                            v-for="(curClass, letter) in letters"
+                            class="letter"
+                            :class="curClass"
+                        >
+                            {{letter}}
+                        </div>
+                    </div>
+                </aside>
+
+                <main class="column is-three-quarters">
+                    <section id="image-container">
+                        <img
+                            id="image"
+                            :src="`images/hangman0${counter}.png`"
+                            alt=""
+                        />
+                    </section>
+                    <section id="solution-container">
+                        <div v-for="letter in userWord" class="solution-letter">
+                            {{letter}}
+                        </div>
+                    </section>
+                    <section id="win-lose-container">
+                        {{winLoseMessage}}
+                    </section>
+                </main>
+            </section>
+        </div>
+        <script src="https://unpkg.com/vue@3"></script>
+        <script src="main.js"></script>
+    </body>
+</html>

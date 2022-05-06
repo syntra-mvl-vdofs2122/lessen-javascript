@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+        />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Vue</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div id="app">
+            <p
+                :id="pId"
+                :style="{backgroundColor: 'goldenrod', fontSize: (count + 10) + 'px'}"
+            >
+                Hello <strong>{{ name }}</strong>
+            </p>
+
+            <p v-if="!disableBtn" class="green-bg large" :class="pClasses">
+                You have clicked the button {{ count }} times
+            </p>
+            <p v-else-if="count < 10">Please click some more</p>
+            <p v-else>Cound disabled</p>
+
+            <button :disabled="disableBtn" @click="btnClicked">Click me</button>
+            <button @click="toggleCount">Active count</button>
+
+            <ul>
+                <li v-for="number in count">{{number}}</li>
+            </ul>
+
+            <ul>
+                <li v-for="(age, curName) in names">{{age}} - {{curName}}</li>
+            </ul>
+        </div>
+
+        <script src="https://unpkg.com/vue@3"></script>
+        <script src="main.js"></script>
+    </body>
+</html>
