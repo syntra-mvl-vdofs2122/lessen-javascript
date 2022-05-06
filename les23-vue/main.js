@@ -6,6 +6,7 @@ Vue.createApp({
             pId: 'first-p',
             disableBtn: true,
             names: { Korneel: 30, Ernest: 23, Willy: 55 },
+            result: [0, 0, 0, 0, 0, 0],
         };
     },
     methods: {

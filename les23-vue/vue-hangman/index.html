@@ -26,6 +26,7 @@
                             v-for="(curClass, letter) in letters"
                             class="letter"
                             :class="curClass"
+                            @click="letterClicked(letter, curClass)"
                         >
                             {{letter}}
                         </div>
@@ -36,16 +37,20 @@
                     <section id="image-container">
                         <img
                             id="image"
-                            :src="`images/hangman0${counter}.png`"
+                            :src="`images/hangman0${turn}.png`"
                             alt=""
                         />
                     </section>
                     <section id="solution-container">
-                        <div v-for="letter in userWord" class="solution-letter">
-                            {{letter}}
+                        <div
+                            v-for="(letter, i) in userWord"
+                            class="solution-letter"
+                            :class="gameOver && !letter ? 'red' : ''"
+                        >
+                            {{gameOver && !letter ? word[i] : letter}}
                         </div>
                     </section>
-                    <section id="win-lose-container">
+                    <section id="win-lose-container" @click="init">
                         {{winLoseMessage}}
                     </section>
                 </main>

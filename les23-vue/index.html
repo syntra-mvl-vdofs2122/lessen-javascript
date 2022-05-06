@@ -35,6 +35,30 @@
             <ul>
                 <li v-for="(age, curName) in names">{{age}} - {{curName}}</li>
             </ul>
+
+            <label
+                >Name:
+                <input type="text" v-model="name" />
+            </label>
+
+            <label>
+                Count:
+                <input type="number" v-model="count" />
+            </label>
+
+            <label>
+                Disabled:
+                <input type="checkbox" v-model="disableBtn" />
+            </label>
+
+            <form>
+                <input type="number" v-model="result[0]" />
+                <input type="number" v-model="result[1]" />
+                <input type="number" v-model="result[2]" />
+                <input type="number" v-model="result[3]" />
+                <input type="number" v-model="result[4]" />
+                <input type="number" v-model="result[5]" />
+            </form>
         </div>
 
         <script src="https://unpkg.com/vue@3"></script>
