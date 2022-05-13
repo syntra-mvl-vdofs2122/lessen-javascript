@@ -1,0 +1,88 @@
+.container {
+    font-size: 3rem;
+    text-align: center;
+}
+
+section {
+    padding: 1rem;
+}
+
+#try-input-section {
+    display: inline-block;
+}
+
+.container input {
+    font-size: 3rem;
+}
+
+.try {
+    clear: both;
+    padding: 0.8rem 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+}
+
+.try-option-container {
+    grid-column: span 2;
+}
+
+.try p {
+    font-size: 0.8rem;
+}
+
+.try p:first-child {
+    text-align: right;
+}
+
+.try.winner .try-option {
+    border-color: green;
+    color: green;
+}
+
+#solution-container,
+.try-option-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#solution-container.hidden .solution-option:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+}
+
+.solution-option,
+.try-option {
+    width: 4rem;
+    height: 4rem;
+    line-height: 4rem;
+    text-align: center;
+    border: 2px solid black;
+    position: relative;
+    margin: 0 0.2rem;
+}
+
+#try-input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+#try-input-container input {
+    height: 4rem;
+    width: 4rem;
+    text-align: center;
+    margin: 0 0.2rem;
+}
+
+.dont-show {
+    display: none !important;
+}
