@@ -66,9 +66,11 @@
                     <button
                         id="try-submit-btn"
                         class="button is-fullwidth is-primary"
-                        :disabled="gameOver"
+                        :disabled="gameOver || !validTry"
+                        @click="submit"
                     >
-                        Try
+                        {{validTry ? 'Try' : `Insert valid numbers between
+                        ${gameSettings.MinNum} and ${gameSettings.MaxNum}`}}
                     </button>
                 </section>
                 <section
@@ -78,6 +80,7 @@
                     <button
                         id="winner-submit-btn"
                         class="button is-fullwidth is-primary"
+                        @click="init"
                     >
                         {{winLoseMessage}}
                     </button>
