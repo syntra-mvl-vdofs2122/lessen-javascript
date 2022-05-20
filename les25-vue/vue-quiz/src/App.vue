@@ -1,12 +1,86 @@
 <template>
-    <h1>App.vue</h1>
-    <Test />
+    <div id="cat-select-container" class="cat-select__container">
+        <form id="cat-select-form" class="cat-select__form">
+            <h1 class="cat-select__title">Select Category</h1>
+            <select
+                name="question-count"
+                id="cat-select-count"
+                class="cat-select__select"
+            >
+                <option value="5">5 Questions</option>
+                <option value="10">10 Questions</option>
+                <option value="15">15 Questions</option>
+            </select>
+            <select
+                id="cat-select-select"
+                class="cat-select__select"
+                name="category"
+            >
+                <option value="0">Loading</option>
+            </select>
+            <select
+                class="cat-select__select"
+                id="cat-select-difficulty"
+                name="difficulty"
+            >
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+            <button
+                id="cat-select-submit"
+                class="cat-select__submit"
+                type="submit"
+            >
+                Start Quiz
+            </button>
+        </form>
+    </div>
+
+    <div id="quiz-container" class="quiz__container hidden">
+        <h1 id="quiz-title" class="quiz__title">Something Quiz</h1>
+
+        <aside class="quiz__aside" id="quiz-aside">
+            <div class="quiz__question-number quiz__question-number--active">
+                1
+            </div>
+            <div class="quiz__question-number quiz__question-number--correct">
+                2
+            </div>
+            <div class="quiz__question-number quiz__question-number--wrong">
+                3
+            </div>
+            <div class="quiz__question-number">4</div>
+            <div class="quiz__question-number">5</div>
+            <div class="quiz__question-number">6</div>
+            <div class="quiz__question-number">7</div>
+            <div class="quiz__question-number">8</div>
+            <div class="quiz__question-number">9</div>
+            <div class="quiz__question-number">10</div>
+
+            <div class="quiz__score">
+                <span id="quiz-score">2</span><span>/</span><span>10</span>
+            </div>
+        </aside>
+
+        <main class="quiz__main">
+            <p id="quiz-question" class="quiz__question">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Distinctio nihil suscipit vel?Lorem ipsum dolor sit amet,
+                consectetur adipisicing elit. Distinctio nihil suscipit
+            </p>
+            <div id="quiz-answer-container" class="quiz__answer-container">
+                <button class="quiz__answer">True</button>
+                <button class="quiz__answer">False</button>
+            </div>
+        </main>
+    </div>
 </template>
 
 <script>
-import Test from '@/components/Test.vue';
 export default {
-    components: { Test },
+    name: 'App',
+    
 };
 </script>
 
